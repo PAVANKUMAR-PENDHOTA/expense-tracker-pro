@@ -1,0 +1,31 @@
+.card-container {
+    display : flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.card {
+  flex: 1; /* Makes both cards take up equal width */
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+  }
+  .filter-container {
+    flex-direction: column;
+  }
+}

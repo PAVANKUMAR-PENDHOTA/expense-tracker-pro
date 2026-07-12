@@ -1,8 +1,10 @@
-import DashboardCards from "./components/Dashboard/DashboardCards"
+import DashboardCards from "./components/DashboardCards/DashboardCards"
 import ExpenseForm from "./components/ExpenseForm/ExpenseForm"
 import ExpenseList from "./components/ExpenseList/ExpenseList"
 import Header from "./components/Header/header"
-
+import SearchBar from "./components/SearchBar/SearchBar"
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter"
+import './App.css'
 
 function App() {
 
@@ -11,14 +13,19 @@ function App() {
     <div>
       <Header/>
       <DashboardCards/>
-      <div style={{width: "100%"}}>
-          <div style={{width: "50%", float: "left"}}>
+      <div className="card-container">
+          <div className="card">
             <ExpenseForm/>
           </div>
-          <div style={{width: "50%", float: "right"}}>
+          <div className="card">
             <ExpenseList/>
           </div>
       </div>
+      <div className="filter-container">
+      <SearchBar/>
+      <CategoryFilter/>
+      </div>
+      
       </div>
     </>
   )

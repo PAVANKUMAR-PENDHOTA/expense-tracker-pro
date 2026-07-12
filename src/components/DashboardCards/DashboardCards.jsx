@@ -1,24 +1,23 @@
 
+import "./DashboardCards.css"
 
-const DashboardCards = () => {
+const DashboardCards = ({ cards = [] }) => {
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '20px',gap: '20px'}}>
-        <div style={{width: '25%', height: '100px', backgroundColor: '#f5f5f5', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}> 
-            <h3>Total Income</h3>
-            <p>$5000</p>
+    <div className="cards-container">
+      {cards.map((card, index) => (
+        <div className="dashboard-card" key={`${card.title}-${index}`}>
+          <div
+            className="card-icon"
+            style={{ backgroundColor: card.color || "#1e88e5" }}
+          >
+            {card.icon}
+          </div>
+          <div className="card-content">
+            <h3 className="card-title">{card.title}</h3>
+            <p className="card-value">{card.value}</p>
+          </div>
         </div>
-        <div style={{width: '25%', height: '100px', backgroundColor: '#f5f5f5', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}> 
-            <h3>Total Expenses</h3>
-            <p>$3000</p>
-        </div>
-        <div style={{width: '25%', height: '100px', backgroundColor: '#f5f5f5', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}> 
-            <h3>Balance</h3>
-            <p>$2000</p>
-        </div>
-        <div style={{width: '25%', height: '100px', backgroundColor: '#f5f5f5', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}> 
-            <h3>Transactions</h3>
-            <p>10</p>
-        </div> 
+      ))}
     </div>
   )
 }

@@ -41,7 +41,7 @@ const validateForm = (formData) => ({
   date: validateField('date', formData.date)
 })
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onAddExpense }) => {
   const [formData, setFormData] = useState(initialFormData)
   const [errors, setErrors] = useState(initialErrors)
   const [statusMessage, setStatusMessage] = useState('')
@@ -79,7 +79,7 @@ const ExpenseForm = () => {
       setStatusMessage('Please fix the highlighted fields before submitting.')
       return
     }
-
+    onAddExpense(formData)
     console.info('Expense added successfully', formData)
     setStatusMessage('Expense added successfully!')
     setFormData(initialFormData)

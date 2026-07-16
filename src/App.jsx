@@ -7,6 +7,24 @@ import Dashboard from "./components/Dashboard/Dashboard"
 import './App.css'
 
 function App() {
+  const expenses = [
+  {
+    id: 1,
+    title: "Salary",
+    amount: 50000,
+    category: "Income",
+    date: "2026-07-18",
+    note: "Salary for July"
+  },
+  {
+    id: 2,
+    title: "Food",
+    amount: 450,
+    category: "Food",
+    date: "2026-07-17",
+    note: "Weekly grocery shopping"
+  }
+];
 
   return (
     <>
@@ -18,7 +36,7 @@ function App() {
             <ExpenseForm />
           </div>
           <div className="card">
-            <ExpenseList />
+            <ExpenseList expenses={expenses} />
           </div>
         </div>
         <div className="filter-container">

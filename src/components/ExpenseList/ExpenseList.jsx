@@ -1,7 +1,7 @@
 import ExpenseItem from '../ExpenseItem/ExpenseItem';
+import './ExpenseList.css';
 
 const ExpenseList = ({ expenses }) => {
-  console.log('ExpenseList expenses:', expenses); // Debugging line
   return (
     <div className="expenseList">
       <h1>Expense List</h1>

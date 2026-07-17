@@ -13,6 +13,14 @@
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-list-card {
+  max-height: 520px;
+  overflow: hidden;
+  min-height: 0;
 }
 .filter-container {
   display: flex;

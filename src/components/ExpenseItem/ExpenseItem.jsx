@@ -1,17 +1,36 @@
 
-
+import "./ExpenseItem.css"
 const ExpenseItem = ({ expense }) => {
-  console.log('ExpenseItem props:', expense); // Log the props to check if they are received correctly
-  return (
+return (
     <div className="expenseItem">
-      <h3>{expense.title}</h3>
-      <p>Amount: ${expense.amount}</p>    {/*expense.amount.toFixed(2) */}
-      <p>Category: {expense.category}</p>
-      <p>Date: {expense.date}</p>
-      <p>Note: {expense.note}</p>
-      <button>Edit</button>&nbsp;
-      <button>Delete</button>
-    </div>
+      <table className="expenseTable">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Note</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{expense.id}</td>
+            <td>{expense.title}</td>
+            <td>${expense.amount}</td>
+            <td>{expense.category}</td>
+            <td>{expense.date}</td>
+            <td>{expense.notes}</td>
+            <td>
+              <button>✏️</button><br/>
+              <button>❌</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
   )
 }
 

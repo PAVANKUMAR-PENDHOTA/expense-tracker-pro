@@ -15,7 +15,7 @@ function App() {
     amount: 50000,
     category: "Income",
     date: "2026-07-18",
-    note: "Salary for July"
+    notes: "Salary for July"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ function App() {
     amount: 450,
     category: "Food",
     date: "2026-07-17",
-    note: "Weekly grocery shopping"
+    notes: "Weekly grocery shopping"
   }
 ];
   const [expenses, setExpenses] = useState(dummyExpenses);
@@ -43,7 +43,7 @@ function App() {
           <div className="card">
             <ExpenseForm onAddExpense={handleAddExpense} />
           </div>
-          <div className="card">
+          <div className="card expense-list-card">
             <ExpenseList expenses={expenses} />
           </div>
         </div>

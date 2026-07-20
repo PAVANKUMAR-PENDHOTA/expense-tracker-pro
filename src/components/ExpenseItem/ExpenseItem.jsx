@@ -1,6 +1,6 @@
 
 import "./ExpenseItem.css"
-const ExpenseItem = ({ expense }) => {
+const ExpenseItem = ({ expense, onDeleteExpense }) => {
 return (
     <div className="expenseItem">
       <table className="expenseTable">
@@ -24,8 +24,8 @@ return (
             <td>{expense.date}</td>
             <td>{expense.notes}</td>
             <td>
-              <button>✏️</button><br/>
-              <button>❌</button>
+              <button >✏️</button><br/>
+              <button onClick={() => onDeleteExpense(expense.id)}>❌</button>
             </td>
           </tr>
         </tbody>

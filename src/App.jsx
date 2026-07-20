@@ -32,7 +32,11 @@ function App() {
     const expenseWithId = { ...newExpense, id: expenses.length + 1 };
     setExpenses((prevExpenses) => [...prevExpenses, expenseWithId]);
   }
-  
+  const handleDeleteExpense = (expenseId) => {
+    if (window.confirm("Are you sure you want to delete this expense?")) {
+      setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+    }
+  };
 
   return (
     <>
@@ -44,7 +48,7 @@ function App() {
             <ExpenseForm onAddExpense={handleAddExpense} />
           </div>
           <div className="card expense-list-card">
-            <ExpenseList expenses={expenses} />
+            <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} />
           </div>
         </div>
         <div className="filter-container">

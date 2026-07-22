@@ -27,14 +27,36 @@ function App() {
   }
 ];
   const [expenses, setExpenses] = useState(dummyExpenses);
+  const [editExpense, setEditExpense] = useState(null); 
 
   const handleAddExpense = (newExpense) => {
     const expenseWithId = { ...newExpense, id: expenses.length + 1 };
     setExpenses((prevExpenses) => [...prevExpenses, expenseWithId]);
-  }
+    setEditExpense(null);
+  };
+
+  const handleUpdateExpense = (updatedExpense) => {
+    setExpenses((prevExpenses) =>
+      prevExpenses.map((expense) =>
+        expense.id === updatedExpense.id ? updatedExpense : expense
+      )
+    );
+    setEditExpense(null);
+  };
+
   const handleDeleteExpense = (expenseId) => {
     if (window.confirm("Are you sure you want to delete this expense?")) {
       setExpenses((prevExpenses) => prevExpenses.filter((expense) => expense.id !== expenseId));
+      if (editExpense?.id === expenseId) {
+        setEditExpense(null);
+      }
+    }
+  };
+
+  const handleEdit = (expenseId) => {
+    const expenseToEdit = expenses.find((expense) => expense.id === expenseId);
+    if (expenseToEdit) {
+      setEditExpense(expenseToEdit);
     }
   };
 
@@ -45,10 +67,15 @@ function App() {
         <Dashboard />
         <div className="card-container">
           <div className="card">
-            <ExpenseForm onAddExpense={handleAddExpense} />
+            <ExpenseForm
+              key={editExpense?.id ?? 'new'}
+              onAddExpense={handleAddExpense}
+              onUpdateExpense={handleUpdateExpense}
+              editExpense={editExpense}
+            />
           </div>
           <div className="card expense-list-card">
-            <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} />
+            <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} onEdit={handleEdit} />
           </div>
         </div>
         <div className="filter-container">

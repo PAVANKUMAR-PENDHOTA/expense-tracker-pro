@@ -9,6 +9,14 @@ const initialFormData = {
   notes: ''
 }
 
+const getInitialFormData = (editExpense) => ({
+  title: editExpense?.title || '',
+  amount: editExpense?.amount || '',
+  category: editExpense?.category || '',
+  date: editExpense?.date || '',
+  notes: editExpense?.notes || ''
+})
+
 const initialErrors = {
   title: '',
   amount: '',
@@ -41,12 +49,12 @@ const validateForm = (formData) => ({
   date: validateField('date', formData.date)
 })
 
-const ExpenseForm = ({ onAddExpense }) => {
-  const [formData, setFormData] = useState(initialFormData)
+const ExpenseForm = ({ onAddExpense, onUpdateExpense, editExpense }) => {
+  const [formData, setFormData] = useState(() => getInitialFormData(editExpense))
   const [errors, setErrors] = useState(initialErrors)
-  const [statusMessage, setStatusMessage] = useState('')
+  const [statusMessage, setStatusMessage] = useState(editExpense ? 'Editing expense. Save changes or submit to update.' : '')
 
-  const categories = ['Food', 'Shopping', 'Transportation', 'Entertainment', 'Bills', 'Health', 'Other']
+  const categories = ['Food', 'Shopping', 'Transportation', 'Entertainment', 'Bills', 'Health', 'Other'];
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -79,9 +87,15 @@ const ExpenseForm = ({ onAddExpense }) => {
       setStatusMessage('Please fix the highlighted fields before submitting.')
       return
     }
-    onAddExpense(formData)
-    console.info('Expense added successfully', formData)
-    setStatusMessage('Expense added successfully!')
+
+    if (editExpense && editExpense.id != null) {
+      onUpdateExpense({ ...formData, id: editExpense.id })
+      setStatusMessage('Expense updated successfully!')
+    } else {
+      onAddExpense(formData)
+      setStatusMessage('Expense added successfully!')
+    }
+
     setFormData(initialFormData)
     setErrors(initialErrors)
   }
@@ -147,7 +161,7 @@ const ExpenseForm = ({ onAddExpense }) => {
         />
 
         {statusMessage ? <p className="error">{statusMessage}</p> : null}
-        <button type="submit">Add Expense</button>
+        <button type="submit">{editExpense ? 'Update Expense' : 'Add Expense'}</button>
       </form>
     </div>
   )

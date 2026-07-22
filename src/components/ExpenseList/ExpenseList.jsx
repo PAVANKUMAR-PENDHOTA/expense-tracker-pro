@@ -1,13 +1,13 @@
 import ExpenseItem from '../ExpenseItem/ExpenseItem';
 import './ExpenseList.css';
 
-const ExpenseList = ({ expenses, onDeleteExpense }) => {
+const ExpenseList = ({ expenses, onDeleteExpense, onEdit }) => {
   return (
     <div className="expenseList">
       <h1>Expense List</h1>
       {expenses.length > 0 ? (
         expenses.map((expense) => (
-          <ExpenseItem key={expense.id} expense={expense} onDeleteExpense={onDeleteExpense} />
+          <ExpenseItem key={expense.id} expense={expense} onDeleteExpense={onDeleteExpense} onEdit={onEdit} />
         ))
       ) : (
         <p>No expenses to display.</p>

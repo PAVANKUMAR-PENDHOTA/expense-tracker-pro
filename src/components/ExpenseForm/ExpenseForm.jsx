@@ -54,7 +54,7 @@ const ExpenseForm = ({ onAddExpense, onUpdateExpense, editExpense }) => {
   const [errors, setErrors] = useState(initialErrors)
   const [statusMessage, setStatusMessage] = useState(editExpense ? 'Editing expense. Save changes or submit to update.' : '')
 
-  const categories = ['Food', 'Shopping', 'Transportation', 'Entertainment', 'Bills', 'Health', 'Other'];
+  const categories = ['Food', 'Shopping', 'Transportation', 'Entertainment', 'Bills', 'Health', 'Salary', 'Other'];
 
   const handleChange = (e) => {
     const { name, value } = e.target
